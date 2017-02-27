@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local vicious = require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -41,7 +42,7 @@ end
 beautiful.init("~/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "sakura"
+terminal = "termite"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -190,6 +191,9 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
+    local mem = wibox.widget.textbox()
+    right_layout:add(mem)
+    vicious.register(mem, vicious.widgets.mem, "$1%", 10)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
@@ -366,6 +370,8 @@ awful.rules.rules = {
       properties = { tag = tags[1][2] } },
     { rule = { class = "Sakura" },
       properties = { tag = tags[1][3], switchtotag = true } },
+    { rule = { class = "Termite" },
+      properties = { tag = tags[1][3], switchtotag = true } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
@@ -400,10 +406,22 @@ client.connect_signal("manage", function (c, startup)
             awful.placement.no_offscreen(c)
         end
     end
+    
+    local skip_titlebar = {
+        "Sukura", "Termite"
+    }
+
+    local function contains(value)
+        for i=1,#skip_titlebar do
+            if skip_titlebar[i] == value then
+                return true
+            end
+        end
+    end
 
 
     local titlebars_enabled = true
-    if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
+    if titlebars_enabled and (c.type == "normal" or c.type == "dialog") and not contains(c.class) then
     -- if titlebars_enabled then
         -- buttons for the titlebar
         local buttons = awful.util.table.join(

@@ -8,7 +8,7 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper = "/usr/share/awesome/themes/zenburn/zenburn-background.png"
+theme.wallpaper = "~/archconfig/awesome/themes/zenburn/nier_background.jpg"
 -- }}}
 
 -- {{{ Styles
@@ -26,8 +26,8 @@ theme.bg_systray = theme.bg_normal
 
 -- {{{ Borders
 theme.border_width  = 2
-theme.border_normal = "#3F3F3F"
-theme.border_focus  = "#6F6F6F"
+theme.border_normal = "#5F5F5F"
+theme.border_focus  = "#CFCFCF"
 theme.border_marked = "#CC9393"
 -- }}}
 
@@ -66,15 +66,15 @@ theme.mouse_finder_color = "#CC9393"
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_height = 15
-theme.menu_width  = 100
+theme.menu_height = 24 
+theme.menu_width  = 220
 -- }}}
 
 -- {{{ Icons
 -- {{{ Taglist
 theme.taglist_squares_sel   = "/usr/share/awesome/themes/zenburn/taglist/squarefz.png"
 theme.taglist_squares_unsel = "/usr/share/awesome/themes/zenburn/taglist/squarez.png"
---theme.taglist_squares_resize = "false"
+theme.taglist_squares_resize = "true"
 -- }}}
 
 -- {{{ Misc
