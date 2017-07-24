@@ -11,6 +11,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local vicious = require("vicious")
+local net_widgets = require('net_widgets')
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -192,6 +193,8 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     local mem = wibox.widget.textbox()
+    local net_wireless = net_widgets.wireless({interface="wlp4s0"})
+    right_layout:add(net_wireless)
     right_layout:add(mem)
     vicious.register(mem, vicious.widgets.mem, "$1%", 10)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
@@ -366,7 +369,7 @@ awful.rules.rules = {
                      buttons = clientbuttons } },
     { rule = { class = "jetbrains-studio" },
       properties = { tag = tags[1][1] } },
-    { rule = { class = "chromium" },
+    { rule = { class = "Chromium" },
       properties = { tag = tags[1][2] } },
     { rule = { class = "Sakura" },
       properties = { tag = tags[1][3], switchtotag = true } },
@@ -439,7 +442,7 @@ client.connect_signal("manage", function (c, startup)
 
         -- Widgets that are aligned to the left
         local left_layout = wibox.layout.fixed.horizontal()
-        left_layout:add(wibox.layout.margin(awful.titlebar.widget.iconwidget(c), 8, 8, 8, 8))
+        left_layout:add(wibox.layout.margin(awful.titlebar.widget.iconwidget(c), 4, 4, 4, 4))
         left_layout:add(awful.titlebar.widget.titlewidget(c))
         left_layout:buttons(buttons)
 
@@ -465,7 +468,7 @@ client.connect_signal("manage", function (c, startup)
         layout:set_right(right_layout)
         layout:set_middle(middle_layout)
 
-        awful.titlebar(c, {position = "bottom", size = 64}):set_widget(layout)
+        awful.titlebar(c, {position = "bottom", size = 32}):set_widget(layout)
     end
 
     -- set tag

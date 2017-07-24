@@ -12,7 +12,7 @@ theme.wallpaper = "~/archconfig/awesome/themes/zenburn/nier_background.jpg"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "sans 16"
+theme.font      = "sans 10"
 
 -- {{{ Colors
 theme.fg_normal  = "#DCDCCC"
@@ -33,7 +33,7 @@ theme.border_marked = "#CC9393"
 
 -- {{{ Titlebars
 theme.titlebar_bg_focus  = "#3F3F3F"
-theme.titlebar_bg_normal = "#3F3F3F"
+theme.titlebar_bg_normal = "#CFCFCF"
 -- }}}
 
 -- There are other variable sets
@@ -44,6 +44,10 @@ theme.titlebar_bg_normal = "#3F3F3F"
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- Example:
 --theme.taglist_bg_focus = "#CC9393"
+theme.taglist_bg_focus = "#CFCFCF"
+theme.taglist_fg_focus = "#3F3F3F"
+theme.tasklist_bg_focus = "#CFCFCF"
+theme.tasklist_fg_focus = "#3F3F3F"
 -- }}}
 
 -- {{{ Widgets
